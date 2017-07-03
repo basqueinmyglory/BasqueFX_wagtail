@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+<!-- Intro Header -->
+    <header class="intro">
+        <div class="intro-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <h1 class="brand-heading">Forex Resources</h1>
+                        <p>Daily Forecasts, Economic Calendar, and Resource Links</P>
+                        <a href="#about" class="btn btn-circle page-scroll">
+                            <i class="fa fa-angle-double-down animated"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    {% for resource in resources %}
+    <section id="about" class="container content-section text-center">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+               <divstyle="width:100%;" id="forecast">
+      
+    <div class="">
+      <h2 class="">Daily Forecast</h2>
+      <h4>{{ resource.specific.date }}</h4>
+      <hr style="width:200px;" class="w3-opacity">
+
+      <p class="w3-wide" style="font-weight: bold; color: white;">Strong Currency: {{ resource.specific.strong_cur }}</p>
+        <div>
+      <p>
+      {{ resource.specific.strong_reason|richtext }}
+      </p>
+        </div>
+        <p class="w3-wide" style="font-weight: bold; color: white;">Weak Currency: {{ resource.specific.weak_cur }}</p>
+        <div>
+      <p>
+      {{ resource.specific.weak_reason|richtext }}
+      </p>
+        </div>
+        <p class="w3-wide" style="font-weight: bold; color: white;">Notes</p>
+        <div>
+      <p>
+      {{ resource.specific.notes|richtext }}
+      </p>
+        </div>
+      <br>
+      </div>
+            </div>
+        </div>
+    </section>
+    {% endfor %}
+
+    <!-- Forex Section -->
+    <section id="forex" class="content-section text-center">
+        <div class="download-section">
+            <div class="container">
+                <div class="col-lg-8 col-lg-offset-2">
+<div style="color:white; font-weight:bold;" class="" >
+    <h2 class="">Economic News & Events</h2>
+    <hr style="width:200px" class="w3-opacity">
+        <div  class="table-responsive">
+            <table border="1" class="dataframe table">
+            <thead>
+            <tr style="text-align: right;">
+            <th>Currency</th>
+            <th>Event</th>
+            <th>Impact</th>
+            <th>Eastern Time</th>
+            <th>Forecast</th>
+            <th>Previous</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            {% for event in dailyevents %}
+            <tr>
+            <td>{{ event.currency }}</td>
+            <td>{{ event.event }}</td>
+            <td>{{ event.impact }}</td>
+            <td>{{ event.time_eastern }}</td>
+            <td>{{ event.forecast }}</td>
+            <td>{{ event.previous }}</td>
+            </tr>
+            {% endfor %}
+        </div>
+  </table>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section id="contact" class="container content-section text-center">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <h2>Resources</h2>
+                <hr style="width:200px" class="w3-opacity">
+                <p><a href="https://www.investing.com/economic-calendar/" style="text-decoration: none;">Economic Calendar</a></p>
+                <p><a href="https://www.tradingview.com/" style="text-decoration: none;">Charts (Trading View)</a></p>
+                <p><a href="https://www.oanda.com/forex-trading/analysis/currency-volatility" style="text-decoration: none;">Currency Volitility Charts (Oanda)</a></p>
+                <p><a href="https://www.bloomberg.com/markets/stocks" style="text-decoration: none;">Bloomberg Equities</a></p>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

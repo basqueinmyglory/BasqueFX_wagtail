@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+
+ <!-- Intro Header -->
+    <header class="intro">
+        <div class="intro-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <h1 class="brand-heading">Basque<span style="font-family: 'Playball'">FX</span></h1>
+                        <p class="intro-text">Forex Trading Journal, Blog, & Analysis</p>
+                        <a href="#about" class="btn btn-circle page-scroll">
+                            <i class="fa fa-angle-double-down animated"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="container content-section">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <!-- Blog Section -->
+                <div class="" id="about">
+                    <h2 class="">{{page.title}}  - {{page.date}} </h2>
+                    <hr style="margin:10px 0; " class="">
+                    <p style="font-family: 'Playball'"> {{page.author}} </p>
+                    <p style="font-size: 12px;">
+                    {{page.body|richtext}}
+                    </p>
+                    <hr style=" margin-bottom: 50px;" class="">
+                </div>
+
+                <div class=""id="disqus_thread"></div>
+                    <script>
+
+
+                    var disqus_config = function () {
+                    this.page.identifier = 'post-{{blogpost.id}}'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                    };
+
+                    (function() { // DON'T EDIT BELOW THIS LINE
+                        var d = document, s = d.createElement('script');
+                        s.src = 'https://basquefx-com.disqus.com/embed.js';
+                        s.setAttribute('data-timestamp', +new Date());
+                        (d.head || d.body).appendChild(s);
+                    })();
+                    </script>
+                    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>                         
+                <!-- END PAGE CONTENT -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+   
+
+    {% endblock %}
